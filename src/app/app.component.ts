@@ -26,10 +26,7 @@ import { data } from './const/data';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'nisum-test';
   imbdData: movie[] = [];
-  imbdData2: movie[] = [];
-
   dataSource: MatTableDataSource<movie> = new MatTableDataSource<movie>;
-
   columnsToDisplay = ['rating', 'title', 'genre', 'year'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: movie | null = null;
@@ -51,15 +48,17 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
   ngOnInit(): void {
-    this.imbdService.saveData(this.imbdData);
-    this.imbdData2 = this.imbdService.readData();
+    this.imbdData = this.imbdService.readData();
     //llamar a la api si no hay registros
-    if (this.imbdData2.length === 0) {
-      console.log("WAAA listas")
-      //this.imbdService.getList();
-    };
-    console.log(this.imbdData2);
-    this.dataSource.data = this.imbdData;
+    if (this.imbdData.length === 0) {
+      this.imbdService.getList().subscribe(res => {
+        this.imbdService.saveData(res);
+        this.imbdData = res;
+        this.dataSource.data = this.imbdData;
+      });
+    } else {
+      this.dataSource.data = this.imbdData;
+    }
   }
 
   recargar() {

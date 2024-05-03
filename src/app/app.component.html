@@ -35,8 +35,11 @@
             <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
                 <div class="example-element-detail"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                    <div>
+                    <div *ngIf="element.thumbnail">
                         <img src="{{ element.thumbnail}}" alt="">
+                    </div>
+                    <div *ngIf="!element.thumbnail">
+                        <img src="assets/img/noImage.svg" alt="">
                     </div>
                     <div class="example-element-description">
                         {{element.description}}
