@@ -6,9 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { data } from './const/data';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +19,6 @@ import { data } from './const/data';
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
-  //standalone: true,
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'nisum-test';
@@ -37,10 +34,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   sort!: MatSort;
 
   constructor(private imbdService: ApiIMDbTop100Service) {
-    data.forEach(element => {
-      let d = <movie>element;
-      this.imbdData.push(d);
-    });
   }
 
   ngAfterViewInit(): void {

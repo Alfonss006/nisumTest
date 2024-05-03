@@ -1,0 +1,63 @@
+<h2>por favor ingrese los datos necesarios para una nueva palicula</h2>
+
+<form [formGroup]="movieForm" class="example-form">
+    <div style="display: flex; flex-direction: row; max-width: 1200px; justify-content: space-between;">
+        <mat-form-field class="example-full-width">
+            <mat-label>Titulo</mat-label>
+            <input type="text" matInput formControlName="title" placeholder="Ironman 4">
+            <mat-error
+                *ngIf="movieForm.controls.title.hasError('email') && !movieForm.controls.title.hasError('required')"></mat-error>
+
+            <mat-error *ngIf="movieForm.controls.title.hasError('required')">Este Campo es
+                <strong>Obligatorio</strong></mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Descripcion</mat-label>
+            <input type="text" matInput formControlName="description" placeholder="IronMan un nuevo comienzo">
+            <mat-error
+                *ngIf="movieForm.controls.description.hasError('email') && !movieForm.controls.description.hasError('required')"></mat-error>
+
+            <mat-error *ngIf="movieForm.controls.description.hasError('required')">Este Campo es
+                <strong>Obligatorio</strong></mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Año de estreno</mat-label>
+            <input type="text" matInput formControlName="year" placeholder="2025">
+            <mat-error
+                *ngIf="movieForm.controls.year.hasError('email') && !movieForm.controls.year.hasError('required')"></mat-error>
+
+            <mat-error *ngIf="movieForm.controls.year.hasError('required')">Este Campo es
+                <strong>Obligatorio</strong></mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Calificacion</mat-label>
+            <input type="number" matInput formControlName="rating" placeholder="8.6">
+            <mat-error
+                *ngIf="movieForm.controls.rating.hasError('max') && !movieForm.controls.rating.hasError('required')">el
+                maximo es de 10</mat-error>
+            <mat-error
+                *ngIf="movieForm.controls.rating.hasError('min') && !movieForm.controls.rating.hasError('required')">el
+                minimo es de 0</mat-error>
+
+            <mat-error *ngIf="movieForm.controls.rating.hasError('required')">Este Campo es
+                <strong>Obligatorio</strong></mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Genero</mat-label>
+            <input type="text" matInput formControlName="genre" placeholder="Acccion">
+            <mat-error
+                *ngIf="movieForm.controls.genre.hasError('email') && !movieForm.controls.genre.hasError('required')"></mat-error>
+
+            <mat-error *ngIf="movieForm.controls.genre.hasError('required')">Este Campo es
+                <strong>Obligatorio</strong></mat-error>
+
+        </mat-form-field>
+
+        <button [disabled]="movieForm.invalid" mat-flat-button (click)="save()" color="primary">Agregar</button>
+    </div>
+
+</form>
